@@ -1,9 +1,9 @@
 """
 Battleship Project
-Name:
+Name:Pravallika
 Roll No:
 """
-
+from random import randint
 import battleship_tests as test
 
 project = "Battleship" # don't edit this
@@ -78,7 +78,19 @@ Parameters: no parameters
 Returns: 2D list of ints
 '''
 def createShip():
-    return
+        rows=randint(1,8)
+        cols=randint(1,8)
+        fordirection=randint(0,1)
+        if(fordirection==1):
+            a=[]
+            for i in range(rows-1,rows+2,1):
+                a.append([i,cols])
+        else:
+            a=[]
+            for i in range(cols-1,cols+2,1):
+                a.append([rows,i])
+        return a
+
 
 
 '''
