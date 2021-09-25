@@ -99,7 +99,14 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def checkShip(grid, ship):
-    return
+    count=0
+    for i in ship:
+        if grid[i[0]][i[1]]==1:
+            count+=1
+            if count==3:
+              return True
+        else:
+            return False
 
 
 '''
@@ -108,8 +115,7 @@ Parameters: 2D list of ints ; int
 Returns: 2D list of ints
 '''
 def addShips(grid, numShips):
-    return
-
+    return  
 
 '''
 drawGrid(data, canvas, grid, showShips)
@@ -287,6 +293,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testEmptyGrid()    
+    #test.testAddShips()
+    test.testCheckShip()   
     ## Finally, run the simulation to test it manually ##
     #runSimulation(500, 500)
