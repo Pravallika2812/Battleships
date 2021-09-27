@@ -98,15 +98,14 @@ checkShip(grid, ship)
 Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
-def checkShip(grid, ship):
+def checkShip(grid, ship)
     count=0
     for i in ship:
-        if grid[i[0]][i[1]]==1:
-            count+=1
-            if count==3:
-              return True
-        else:
+        if(grid[i[0]][i[1]]!=EMPTY_UNCLICKED):
             return False
+        else:
+            return True
+
 
 
 '''
