@@ -1,9 +1,9 @@
 """
 Battleship Project
-Name:Pravallika
+Name:
 Roll No:
 """
-from random import randint
+
 import battleship_tests as test
 
 project = "Battleship" # don't edit this
@@ -25,18 +25,7 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def makeModel(data):
-    data["rows"]=10
-    data["cols"]=10
-    data["boardsize"]=500
-    data["cellsize"]=50
-    data["numships"]=5
-    data["Computerboard"]=[[]]
-    data["Userboard"]=[[]]
-    data["Computerboard"]=emptyGrid(data["rows"],data["cols"])
-    data["Userboard"]=emptyGrid(data["rows"],data["cols"])
-    data["Computerboard"]=addShips(data["Computerboard"],data["numships"])
     return
-
 
 
 '''
@@ -75,10 +64,10 @@ Returns: 2D list of ints
 def emptyGrid(rows, cols):
     grid=[]
     for i in range(rows):
-        l1 = []
+        col = []
         for j in range(cols):
-            l1.append(EMPTY_UNCLICKED)
-        grid.append(l1)
+            col.append(EMPTY_UNCLICKED)
+        grid.append(col)
     return grid
 
 
@@ -89,19 +78,7 @@ Parameters: no parameters
 Returns: 2D list of ints
 '''
 def createShip():
-        rows=randint(1,8)
-        cols=randint(1,8)
-        fordirection=randint(0,1)
-        if(fordirection==1):
-            a=[]
-            for i in range(rows-1,rows+2,1):
-                a.append([i,cols])
-        else:
-            a=[]
-            for i in range(cols-1,cols+2,1):
-                a.append([rows,i])
-        return a
-
+    return
 
 
 '''
@@ -110,10 +87,13 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def checkShip(grid, ship):
-     for i in range(len(ship)):
-        if grid[ship[i][0]][ship[i][1]]!=EMPTY_UNCLICKED:
+    for i in range(len(ship)):
+         if grid[ship[i][0]][ship[i][1]] != EMPTY_UNCLICKED: 
              return False
-     return True
+    return True
+
+
+
 
 
 '''
@@ -122,14 +102,8 @@ Parameters: 2D list of ints ; int
 Returns: 2D list of ints
 '''
 def addShips(grid, numShips):
-    count=0
-    while count<numShips:
-        ship=createShip()
-        if checkShip(grid,ship)==True:
-            for i in range(len(ship)):
-                grid[ship[i][0]][ship[i][1]]=SHIP_UNCLICKED
-            count +=1
-    return grid
+    return
+
 
 '''
 drawGrid(data, canvas, grid, showShips)
@@ -307,7 +281,6 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testCheckShip()
-    #test.testCheckShip()   
+    test.testEmptyGrid()    
     ## Finally, run the simulation to test it manually ##
     #runSimulation(500, 500)
