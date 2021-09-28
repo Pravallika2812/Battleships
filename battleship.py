@@ -64,10 +64,10 @@ Returns: 2D list of ints
 def emptyGrid(rows, cols):
     grid=[]
     for i in range(rows):
-        cols = []
+        col = []
         for j in range(cols):
-            cols.append(EMPTY_UNCLICKED)
-        grid.append(cols)
+            col.append(EMPTY_UNCLICKED)
+        grid.append(col)
     return grid
 
 
