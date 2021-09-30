@@ -144,9 +144,9 @@ def drawGrid(data, canvas, grid, showShips):
     for i in range(0,data["rows"],1):
         for j in range(0,data["cols"],1):
                 if(grid[i][j]==SHIP_UNCLICKED):
-                    y='yellow'
+                    boardcolour='yellow'
                 else:
-                    y='blue'
+                    boardcolour='blue'
                 x1=data["cellsize"]*j
                 y1=data["cellsize"]*i
                 x2=x1+data["cellsize"]
