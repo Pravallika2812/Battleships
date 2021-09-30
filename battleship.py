@@ -28,10 +28,10 @@ def makeModel(data):
     data["rows"]=10
     data["cols"]=10
     data["boardsize"]=500
-    data["cellsize"]=50
+    data["cellsize"]=data["boardsize"]/data["rows"]
     data["numships"]=5
-    data["Computerboard"]=[[]]
-    data["Userboard"]=[[]]
+  #  data["Computerboard"]=[[]]
+   # data["Userboard"]=[[]]
     data["Computerboard"]=emptyGrid(data["rows"],data["cols"])
     data["Userboard"]=emptyGrid(data["rows"],data["cols"])
     data["Computerboard"]=addShips(data["Computerboard"],data["numships"])
@@ -311,7 +311,8 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testAddShips()
+    test.testMakeModel()
+  #  test.testAddShips()
     #test.testCheckShip()   
     ## Finally, run the simulation to test it manually ##
     #runSimulation(500, 500)
