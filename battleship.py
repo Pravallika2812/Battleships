@@ -35,6 +35,8 @@ def makeModel(data):
     data["Computerboard"]=emptyGrid(data["rows"],data["cols"])
     data["Userboard"]=emptyGrid(data["rows"],data["cols"])
     data["Computerboard"]=addShips(data["Computerboard"],data["numships"])
+    data["TemporaryShip"]=[]
+    data["noofshipsadded"]=0
     return
 
 
@@ -47,6 +49,8 @@ Returns: None
 def makeView(data, userCanvas, compCanvas):
     drawGrid(data,userCanvas,data["Userboard"],True)
     drawGrid(data,compCanvas,data["Computerboard"],True)
+    drawShip(data,userCanvas,data["TemporaryShip"])
+
     return
 
 
@@ -65,6 +69,9 @@ Parameters: dict mapping strs to values ; mouse event object ; 2D list of ints
 Returns: None
 '''
 def mousePressed(data, event, board):
+    
+
+
     pass
 
 #### WEEK 1 ####
@@ -151,7 +158,7 @@ def drawGrid(data, canvas, grid, showShips):
                 y1=data["cellsize"]*i
                 x2=x1+data["cellsize"]
                 y2=y1+data["cellsize"]
-                canvas.create_rectangle(x1,y1,x2,y2,outline='black',fill=y)
+                canvas.create_rectangle(x1,y1,x2,y2,outline='black',fill=boardcolour)
     return
 
 ### WEEK 2 ###
@@ -162,7 +169,21 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isVertical(ship):
-    return
+    col=ship[0][1]
+    for i in range(len(ship)):
+        if(ship[i][1]!=col):
+            return False 
+    row=[]
+    for i in range(len(ship)):
+        row.append(ship[i][0])
+    row.sort()
+    for i in range(len(row)-1):
+        if 1+row[i]!=row[i+1]:
+            return False
+    return True
+  
+    
+
 
 
 '''
@@ -174,6 +195,7 @@ def isHorizontal(ship):
     return
 
 
+
 '''
 getClickedCell(data, event)
 Parameters: dict mapping strs to values ; mouse event object
@@ -183,13 +205,17 @@ def getClickedCell(data, event):
     return
 
 
+
+
 '''
 drawShip(data, canvas, ship)
 Parameters: dict mapping strs to values ; Tkinter canvas; 2D list of ints
 Returns: None
 '''
 def drawShip(data, canvas, ship):
-    return
+    
+        
+        return
 
 
 '''
@@ -200,6 +226,8 @@ Returns: bool
 def shipIsValid(grid, ship):
     return
 
+    
+
 
 '''
 placeShip(data)
@@ -207,6 +235,7 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def placeShip(data):
+    
     return
 
 
@@ -216,6 +245,9 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def clickUserBoard(data, row, col):
+    
+
+
     return
 
 
@@ -227,7 +259,16 @@ Parameters: dict mapping strs to values ; 2D list of ints ; int ; int ; str
 Returns: None
 '''
 def updateBoard(data, board, row, col, player):
+    for i in range(row+1):
+        for j in range(col+1):
+            if(board[i][j]==SHIP_UNCLICKED):
+                board[i][j]=SHIP_CLICKED
+            if(board[i][j]==EMPTY_UNCLICKED):
+                board[i][j]=EMPTY_CLICKED
     return
+    
+
+ 
 
 
 '''
@@ -321,7 +362,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testCheckShip()
-    #test.testCheckShip()   
-    ## Finally, run the simulation to test it manually ##
-    #runSimulation(500, 500)
+  #  test.test()
+    test.testIsVertical()   
+    # Finally, run the simulation to test it manually ##
+   # runSimulation(500, 500)
