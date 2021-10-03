@@ -69,6 +69,10 @@ Parameters: dict mapping strs to values ; mouse event object ; 2D list of ints
 Returns: None
 '''
 def mousePressed(data, event, board):
+    position=getClickedCell(data,event)
+    #position.append(getClickedCell(data, event))        
+    if(board=="user"):
+        clickUserBoard(data,position[0],position[1])
     
 
 
@@ -123,7 +127,7 @@ Returns: bool
 def checkShip(grid, ship):
      for i in range(len(ship)):
         if grid[ship[i][0]][ship[i][1]]!=EMPTY_UNCLICKED:
-             return False
+            return False
      return True
 
 
@@ -150,15 +154,15 @@ Returns: None
 def drawGrid(data, canvas, grid, showShips):
     for i in range(0,data["rows"],1):
         for j in range(0,data["cols"],1):
-                if(grid[i][j]==SHIP_UNCLICKED):
+            if(grid[i][j]==SHIP_UNCLICKED):
                     boardcolour='yellow'
-                else:
-                    boardcolour='blue'
-                x1=data["cellsize"]*j
-                y1=data["cellsize"]*i
-                x2=x1+data["cellsize"]
-                y2=y1+data["cellsize"]
-                canvas.create_rectangle(x1,y1,x2,y2,outline='black',fill=boardcolour)
+            else:
+                boardcolour='blue'
+            x1=data["cellsize"]*j
+            y1=data["cellsize"]*i
+            x2=x1+data["cellsize"]
+            y2=y1+data["cellsize"]
+            canvas.create_rectangle(x1,y1,x2,y2,outline='black',fill=boardcolour)
     return
 
 ### WEEK 2 ###
@@ -192,7 +196,6 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isHorizontal(ship):
-    
     row=ship[0][0]
     col=[]
     for i in range(len(ship)):
@@ -235,7 +238,7 @@ def drawShip(data, canvas, ship):
         canvas.create_rectangle(shipcorx1,shipcory1,shipcorx2,shipcory2,fill='white')
     
         
-        return
+    return
 
 
 '''
@@ -244,10 +247,16 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def shipIsValid(grid, ship):
-   if(checkShip(grid,ship)==True&(isVertical(ship)==True|isHorizontal(ship)==True)):
-        return True
+   if(len(ship)==3):
+        if(checkShip(grid,ship)==True):
+            if(isVertical(ship)==True):
+                return True
+            elif(isHorizontal(ship)==True):
+                return True
    else:
         return False
+
+ 
 
     
 
@@ -267,13 +276,9 @@ def placeShip(data):
         for i in range(len(tempship)):
             userboar[tempship[i][0]][tempship[i][1]]=SHIP_UNCLICKED
         data["noofshipsadded"]=data["noofshipsadded"]+1
-    # if(shipIsValid(data["Userboard"],data["TemporaryShip"])==True):
-    #     for i in range(len(data["TemporaryShip"])):
-
-    #     #addShips(data["Userboard"],data["TemporaryShip"])
-    #     data["noofshipsadded"]=data["noofshipsadded"]+1
     else:
         print("Ship is not valid")
+  #  tempship=[]
     data["TemporaryShip"]=[]
 
     
@@ -310,7 +315,7 @@ def clickUserBoard(data, row, col):
     return  
 
 
-    return
+    
 
 
 ### WEEK 3 ###
@@ -425,6 +430,6 @@ def runSimulation(w, h):
 # This code runs the test cases to check your work
 if __name__ == "__main__":
   #  test.test()
-    test.testShipIsValid()   
+  #  test.testShipIsValid()   
     # Finally, run the simulation to test it manually ##
-   # runSimulation(500, 500)
+    runSimulation(500, 500)
