@@ -326,12 +326,11 @@ Parameters: dict mapping strs to values ; 2D list of ints ; int ; int ; str
 Returns: None
 '''
 def updateBoard(data, board, row, col, player):
-    for i in range(row+1):
-        for j in range(col+1):
-            if(board[i][j]==SHIP_UNCLICKED):
-                board[i][j]=SHIP_CLICKED
-            if(board[i][j]==EMPTY_UNCLICKED):
-                board[i][j]=EMPTY_CLICKED
+    if(board[row][col]==SHIP_UNCLICKED):
+        board[row][col]=SHIP_CLICKED
+    elif(board[row][col]==EMPTY_UNCLICKED):
+        board[row][col]=EMPTY_CLICKED
+
     return
     
 
