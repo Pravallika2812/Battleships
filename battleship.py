@@ -260,6 +260,22 @@ Parameters: dict mapping strs to values
 Returns: None
 '''
 def placeShip(data):
+    userboar=data["Userboard"]
+    tempship=data["TemporaryShip"]
+    
+    if shipIsValid(userboar,tempship):
+        for i in range(len(tempship)):
+            userboar[tempship[i][0]][tempship[i][1]]=SHIP_UNCLICKED
+        data["noofshipsadded"]=data["noofshipsadded"]+1
+    # if(shipIsValid(data["Userboard"],data["TemporaryShip"])==True):
+    #     for i in range(len(data["TemporaryShip"])):
+
+    #     #addShips(data["Userboard"],data["TemporaryShip"])
+    #     data["noofshipsadded"]=data["noofshipsadded"]+1
+    else:
+        print("Ship is not valid")
+    data["TemporaryShip"]=[]
+
     
     return
 
