@@ -72,7 +72,10 @@ def mousePressed(data, event, board):
     position=getClickedCell(data,event)
     #position.append(getClickedCell(data, event))        
     if(board=="user"):
-        clickUserBoard(data,position[0],position[1])
+      clickUserBoard(data,position[0],position[1])
+    if((board=="comp") and (data["numships"]==5)):
+        runGameTurn(data,position[0],position[1])
+
     
 
 
@@ -155,7 +158,11 @@ def drawGrid(data, canvas, grid, showShips):
     for i in range(0,data["rows"],1):
         for j in range(0,data["cols"],1):
             if(grid[i][j]==SHIP_UNCLICKED):
-                    boardcolour='yellow'
+                boardcolour='yellow'
+            elif(grid[i][j]==SHIP_CLICKED):
+                boardcolour='red'
+            elif(grid[i][j]==EMPTY_CLICKED):
+                boardcolour='white'
             else:
                 boardcolour='blue'
             x1=data["cellsize"]*j
@@ -343,6 +350,9 @@ Parameters: dict mapping strs to values ; int ; int
 Returns: None
 '''
 def runGameTurn(data, row, col):
+    compuboa=data["Computerboard"]
+    if(compuboa[row][col]==SHIP_UNCLICKED or compuboa[row][col]==EMPTY_UNCLICKED):
+        updateBoard(data,compuboa,row,col,"user")
     return
 
 
