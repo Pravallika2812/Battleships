@@ -291,7 +291,7 @@ def clickUserBoard(data, row, col):
     numUserShip = data["noofshipsadded"]
 
     #check No of user ships
-    if numUserShip == 5:
+    if numUserShip == data["numships"]:
         return
 
     #check if user coordinates are already present in user ship
@@ -303,14 +303,13 @@ def clickUserBoard(data, row, col):
     #check if user passed 3 coordinates for ship
     if len(userShip) == 3:
         placeShip(data)
-    #checking No of ships added
-    if numUserShip == 5:
-        print("Ships are ready to fire")
+
+
 
     return  
 
 
-    return
+    
 
 
 ### WEEK 3 ###
