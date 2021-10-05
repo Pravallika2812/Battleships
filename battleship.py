@@ -415,6 +415,14 @@ Parameters: dict mapping strs to values ; Tkinter canvas
 Returns: None
 '''
 def drawGameOver(data, canvas):
+    if(data["winner"]=="user"):
+        canvas.create_text(100,50,text="Congralutions!! You are the winner",fill='black')
+    if(data["winner"]=="comp"):
+        canvas.create_text(100,50,text="Try again!! You are Lost",fill='black')
+    if(data["winner"]=="draw"):
+        canvas.create_text(100,50,text="Draw match Out of moves",fill='black')
+    canvas.create_text(100,59,text="Press enter to play agian",fill="black")
+
     
     return
 
