@@ -52,12 +52,16 @@ Returns: None
 '''
 def makeView(data, userCanvas, compCanvas):
     drawGrid(data,userCanvas,data["Userboard"],True)
-    drawGrid(data,compCanvas,data["Computerboard"],True)
+    drawGrid(data,compCanvas,data["Computerboard"],False)
     drawShip(data,userCanvas,data["TemporaryShip"])
     if(data["winner"]=="user"):
         drawGameOver(data,userCanvas)
     elif(data["winner"]=="computer"):
         drawGameOver(data,compCanvas)
+    else:
+        drawGameOver(data,compCanvas)
+        drawGameOver(data,userCanvas)
+
   
 
     return
@@ -69,6 +73,8 @@ Parameters: dict mapping strs to values ; key event object
 Returns: None
 '''
 def keyPressed(data, event):
+    if(event):
+        makeModel(data)
     
     pass
 
@@ -81,16 +87,20 @@ Returns: None
 def mousePressed(data, event, board):
     position=getClickedCell(data,event)     
 
-    if(board=="user"):
+    if(data["winner"]==None):     
+        if(board=="user"):
+            clickUserBoard(data,position[0],position[1])
+        if((board=="comp") and (data["noofshipsadded"]==5)):
+            runGameTurn(data,position[0],position[1])
 
-        clickUserBoard(data,position[0],position[1])
+    
 
 
 
     
 
 
-    pass
+    
 
 #### WEEK 1 ####
 
@@ -168,14 +178,15 @@ Returns: None
 def drawGrid(data, canvas, grid, showShips):
     for i in range(0,data["rows"],1):
         for j in range(0,data["cols"],1):
-            if(grid[i][j]==SHIP_UNCLICKED):
+            boardcolour='blue'
+            if(grid[i][j]==SHIP_UNCLICKED and showShips):
                 boardcolour='yellow'
             elif(grid[i][j]==SHIP_CLICKED):
                 boardcolour='red'
             elif(grid[i][j]==EMPTY_CLICKED):
                 boardcolour='white'
-            else:
-                boardcolour='blue'
+            
+                
             x1=data["cellsize"]*j
             y1=data["cellsize"]*i
             x2=x1+data["cellsize"]
@@ -362,6 +373,8 @@ Returns: None
 '''
 def runGameTurn(data, row, col):
     compuboa=data["Computerboard"]
+    userboa=data["Userboard"]
+
     if(compuboa[row][col]==SHIP_UNCLICKED or compuboa[row][col]==EMPTY_UNCLICKED):
         updateBoard(data,compuboa,row,col,"user")
         compCoordinates=getComputerGuess(userboa)
@@ -417,11 +430,16 @@ Returns: None
 def drawGameOver(data, canvas):
     if(data["winner"]=="user"):
         canvas.create_text(100,50,text="Congralutions!! You are the winner",fill='black')
+        canvas.create_text(100,59,text="Press enter to play agian",fill="black")
     if(data["winner"]=="comp"):
         canvas.create_text(100,50,text="Try again!! You are Lost",fill='black')
+        canvas.create_text(100,59,text="Press enter to play agian",fill="black")
     if(data["winner"]=="draw"):
         canvas.create_text(100,50,text="Draw match Out of moves",fill='black')
-    canvas.create_text(100,59,text="Press enter to play agian",fill="black")
+        canvas.create_text(100,59,text="Press enter to play agian",fill="black")
+    return
+
+
 
     
     return
