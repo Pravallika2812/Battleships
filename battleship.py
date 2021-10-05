@@ -192,19 +192,17 @@ Parameters: 2D list of ints
 Returns: bool
 '''
 def isHorizontal(ship):
-    
     row=ship[0][0]
     col=[]
     for i in range(len(ship)):
         if(ship[i][0]!=row):
             return False 
-    for i in range(len(ship)):
         col.append(ship[i][1])
     col.sort()
     for i in range(len(col)-1):
         if 1+col[i]!=col[i+1]:
-            return False
-    return True
+            return False   
+    
     
 
 
