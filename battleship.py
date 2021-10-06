@@ -277,11 +277,11 @@ Returns: bool
 '''
 def shipIsValid(grid, ship):
    if(len(ship)==3):
-        if(checkShip(grid,ship)==True):
-            if(isVertical(ship)==True):
-                return True
-            elif(isHorizontal(ship)==True):
-                return True
+       if(checkShip(grid,ship)==True):
+           if(isVertical(ship)==True):
+               return True
+           elif(isHorizontal(ship)==True):
+               return True
    else:
         return False
 
@@ -337,10 +337,6 @@ def clickUserBoard(data, row, col):
     #check if user passed 3 coordinates for ship
     if len(userShip) == 3:
         placeShip(data)
-    #checking No of ships added
-    if numUserShip == 5:
-        print("Ships are ready to fire")
-
     return  
 
 
