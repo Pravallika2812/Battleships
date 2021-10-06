@@ -1,9 +1,9 @@
 """
 Battleship Project
-Name:
+Name:Pravallika
 Roll No:
 """
-
+from random import randint
 import battleship_tests as test
 
 project = "Battleship" # don't edit this
@@ -78,7 +78,19 @@ Parameters: no parameters
 Returns: 2D list of ints
 '''
 def createShip():
-    return
+        rows=randint(1,8)
+        cols=randint(1,8)
+        fordirection=randint(0,1)
+        if(fordirection==1):
+            ship=[]
+            for i in range(rows-1,rows+2,1):
+                ship.append([i,cols])
+        else:
+            ship=[]
+            for i in range(cols-1,cols+2,1):
+                ship.append([rows,i])
+        return ship
+
 
 
 '''
@@ -87,8 +99,12 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def checkShip(grid, ship):
-    return
-
+    count=0
+    for i in ship:
+        if(grid[i[0]][i[1]]!=EMPTY_UNCLICKED):
+            return False
+        else:
+            return True   
 
 '''
 addShips(grid, numShips)
@@ -96,8 +112,7 @@ Parameters: 2D list of ints ; int
 Returns: 2D list of ints
 '''
 def addShips(grid, numShips):
-    return
-
+    return  
 
 '''
 drawGrid(data, canvas, grid, showShips)
@@ -275,6 +290,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    test.testEmptyGrid()    
+    #test.testAddShips()
+    test.testCheckShip()   
     ## Finally, run the simulation to test it manually ##
     #runSimulation(500, 500)
