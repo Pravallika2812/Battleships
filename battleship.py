@@ -64,10 +64,10 @@ Returns: 2D list of ints
 def emptyGrid(rows, cols):
     grid=[]
     for i in range(rows):
-        col = []
+        l1 = []
         for j in range(cols):
-            col.append(EMPTY_UNCLICKED)
-        grid.append(col)
+            l1.append(EMPTY_UNCLICKED)
+        grid.append(l1)
     return grid
 
 
@@ -82,14 +82,14 @@ def createShip():
         cols=randint(1,8)
         fordirection=randint(0,1)
         if(fordirection==1):
-            ship=[]
+            a=[]
             for i in range(rows-1,rows+2,1):
-                ship.append([i,cols])
+                a.append([i,cols])
         else:
-            ship=[]
+            a=[]
             for i in range(cols-1,cols+2,1):
-                ship.append([rows,i])
-        return ship
+                a.append([rows,i])
+        return a
 
 
 
@@ -99,10 +99,15 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def checkShip(grid, ship):
-    for i in range(len(ship)):
-         if grid[ship[i][0]][ship[i][1]] != EMPTY_UNCLICKED:
-              return False
-    return True
+    count=0
+    for i in ship:
+        if grid[i[0]][i[1]]==1:
+            count+=1
+            if count==3:
+              return True
+        else:
+            return False
+
 
 '''
 addShips(grid, numShips)
@@ -110,7 +115,14 @@ Parameters: 2D list of ints ; int
 Returns: 2D list of ints
 '''
 def addShips(grid, numShips):
-    return  
+    count=0
+    while count<numShips:
+        ship=createShip()
+        if checkShip(grid,ship)==True:
+            for i in range(len(ship)):
+                grid[ship[i][0]][ship[i][1]]=SHIP_UNCLICKED
+            count +=1
+    return grid
 
 '''
 drawGrid(data, canvas, grid, showShips)
@@ -288,7 +300,7 @@ def runSimulation(w, h):
 
 # This code runs the test cases to check your work
 if __name__ == "__main__":
-    #test.testAddShips()
-    test.testCheckShip()   
+    test.testAddShips()
+    #test.testCheckShip()   
     ## Finally, run the simulation to test it manually ##
     #runSimulation(500, 500)
