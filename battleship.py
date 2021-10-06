@@ -276,13 +276,13 @@ Parameters: 2D list of ints ; 2D list of ints
 Returns: bool
 '''
 def shipIsValid(grid, ship):
-   if(len(ship)==3):
+    if(len(ship)==3):
        if(checkShip(grid,ship)==True):
            if(isVertical(ship)==True):
                return True
            elif(isHorizontal(ship)==True):
                return True
-   else:
+    else:
         return False
 
  
