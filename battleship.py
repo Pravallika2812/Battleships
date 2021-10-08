@@ -196,7 +196,7 @@ def isVertical(ship):
     for i in range(len(ship)):
         if(ship[i][1]!=col):
             return False
-        row.append(ship[i][0]) 
+        row.append(ship[i][0]) # adding the rows of the ship into rows
 
     row.sort()
     for i in range(len(row)-1):
