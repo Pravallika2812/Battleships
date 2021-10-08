@@ -201,7 +201,8 @@ def isHorizontal(ship):
     col.sort()
     for i in range(len(col)-1):
         if 1+col[i]!=col[i+1]:
-            return False   
+            return False 
+    return True  
     
     
 
