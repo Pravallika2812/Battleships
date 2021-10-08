@@ -245,10 +245,10 @@ Returns: bool
 '''
 def shipIsValid(grid, ship):
     if(len(ship)==3):
-       if(checkShip(grid,ship)==True):
-            if(isVertical(ship)==True):
+       if(checkShip(grid,ship)):
+            if(isVertical(ship)):
                 return True
-            elif(isHorizontal(ship)==True):
+            elif(isHorizontal(ship)):
                 return True
     else:
         return False
